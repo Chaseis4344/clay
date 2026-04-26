@@ -50,9 +50,9 @@ pub fn clay_raylib_render<'rl, 'a, CustomElementData: 'a>(
             RenderCommandConfig::Image(image) => {
                 let texture = image.data;
 
-                let mut tint_color: crate::color::Color = image.backgrond_color;
-                if (tint_color.r == 0 && tint_color.g == 0 && tint_color.b == 0 && tint_color.a == 0){
-                    tint_color = Color::WHITE
+                let mut tint_color: crate::color::Color = image.background_color;
+                if tint_color.r == 0. && tint_color.g == 0. && tint_color.b == 0. && tint_color.a == 0.{
+                    tint_color = crate::color::Color::u_rgba(0xFF,0xFF,0xFF,0xFF);
                 }
 
                 //TODO: Figure out why we are using a different draw command from Nic's

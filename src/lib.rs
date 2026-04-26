@@ -249,7 +249,7 @@ impl<'render, 'clay: 'render, ImageElementData: 'render, CustomElementData: 'ren
     pub fn end(
         &mut self,
     ) -> impl Iterator<Item = RenderCommand<'render, ImageElementData, CustomElementData>> {
-        let array = unsafe { Clay_EndLayout() };
+        let array = unsafe { Clay_EndLayout(0.) };
         self.dropped = true;
         let slice = unsafe { core::slice::from_raw_parts(array.internalArray, array.length as _) };
         slice
@@ -295,7 +295,8 @@ impl<ImageElementData, CustomElementData> Drop
     fn drop(&mut self) {
         if !self.dropped {
             unsafe {
-                Clay_EndLayout();
+                //TODO: Find or build GetFrameTime Function used in Nic's implementation
+                Clay_EndLayout(0.);
             }
         }
     }
