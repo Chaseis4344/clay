@@ -33,7 +33,9 @@ pub fn clay_raylib_render<'rl, 'a, CustomElementData: 'a>(
     mut handle_custom_element: impl FnMut(&CustomElementData, &mut RaylibDrawHandle<'rl>),
 ) {
     for command in render_commands {
+        
         match command.config {
+            
             RenderCommandConfig::Text(text) => {
                 let text_data = text.text;
                 d.draw_text(
@@ -48,13 +50,18 @@ pub fn clay_raylib_render<'rl, 'a, CustomElementData: 'a>(
             RenderCommandConfig::Image(image) => {
                 let texture = image.data;
 
+                let mut tint_color: crate::color::Color = image.backgrond_color;
+                if (tint_color.r == 0 && tint_color.g == 0 && tint_color.b == 0 && tint_color.a == 0){
+                    tint_color = Color::WHITE
+                }
+
+                //TODO: Figure out why we are using a different draw command from Nic's
                 d.draw_texture_ex(
                     texture,
                     Vector2::new(command.bounding_box.x, command.bounding_box.y),
                     0.,
                     command.bounding_box.width / texture.width as f32,
-                    // TODO: backgrond color isnt in raylib bindings?
-                    clay_to_raylib_color!(Color::WHITE),
+                    clay_to_raylib_color!(tint_color),
                 );
             }
 
