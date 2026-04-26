@@ -70,6 +70,6 @@ Calling it will use the `clay.h` in the project root, or any `clay.h` file provi
 Using the clay header it will generate `src/bindings/bindings.rs` and `src/bindings/bindings_debug.rs`.
 
 ## Dependencies
-For Linux, this binding requires `libclang.so` to be installed on the systemto successfully compile. This primarily affects the raylib renderer.
+For Linux, this binding requires `libclang.so` to be installed on the system to successfully compile. This primarily affects the raylib renderer.
 
 This can be provided by a `clang` package on most distros.
