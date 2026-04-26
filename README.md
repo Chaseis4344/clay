@@ -68,3 +68,8 @@ To build bindings you need to use the `generate_bindings` script. \
 It needs `bindgen` installed as a CLI, you can install it with `cargo install bindgen`. \
 Calling it will use the `clay.h` in the project root, or any `clay.h` file provided with `CLAY_HEADER_PATH`. \
 Using the clay header it will generate `src/bindings/bindings.rs` and `src/bindings/bindings_debug.rs`.
+
+## Dependencies
+For Linux, this binding requires `libclang.so` to be installed on the systemto successfully compile. This primarily affects the raylib renderer.
+
+This can be provided by a `clang` package on most distros.
